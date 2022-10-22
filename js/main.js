@@ -408,8 +408,8 @@ function noteLayout(table, index) {
 
     let object = new THREE.Object3D();
 
-    object.position.x = -290;
-    object.position.y = 1100;
+    object.position.x = 260;
+    object.position.y = 900;
     object.position.z = 0;
     targets.table.push(object);
 
@@ -507,5 +507,5 @@ function animate() {
     requestAnimationFrame(animate);
     TWEEN.update();
     controls.update();
-    //composer.render();
+    composer.render();
 }
