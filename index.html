@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PeriTab v1.0 3d Periodic Table App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        *{
+          margin: 0;
+          padding: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: #ffffff;
+            margin: 0;
+            font-family: Helvetica, sans-serif;;
+            overflow: hidden;
+        }
+        .coord_element{
+            width: 60px;
+            height: 70px;
+            text-align: center;
+            cursor: default;
+        }
+
+        .col_num{
+            position: relative;
+            left: 0px;
+            right: 0px;
+            font-size: 60px;
+            font-weight: bold;
+            color: rgba(0, 0, 0, 0.75);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+        }
+
+        .element {
+            width: 120px;
+            height: 140px;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            text-align: center;
+            cursor: default;
+            border-radius: 10px;
+        }
+
+        .element:hover {
+            box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.75);
+            border: 1px solid rgba(127, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+        }
+
+        .cont{
+         margin-top: 15px;
+         display: flex;
+         text-align: center;
+         align-content: center;
+         justify-content: center;
+        }
+      .left{
+         display: block;
+        }
+      .number_A {
+         position: relative;
+         height: 25%;
+         font-weight: 800;
+         font-size: 15px;
+         color: rgba(0, 0, 0, 0.75);
+         text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+        }
+      .space{
+         height: 50%;
+        }
+      .number_Z {
+         position: relative;
+         height: 25%;
+         font-weight: 800;
+         top: 3px;
+         font-size: 15px;
+         color: rgba(0, 0, 0, 0.75);
+         text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+        }
+
+
+     .symbol {
+         position: relative;
+         left: 0px;
+         right: 0px;
+         font-size: 60px;
+         font-weight: bold;
+         color: rgba(0, 0, 0, 0.75);
+         text-shadow: 0 0 10px rgba(0, 255, 255, 0.95);
+      }
+
+      .details {
+         top: 10px;
+         position: relative;
+         bottom: 15px;
+         font-size: 12px;
+         font-weight: 800;
+         color: rgba(0, 0, 0, 0.75);
+      }
+
+      .note_element{
+         width: 120px;
+        height: 140px;
+        box-shadow: 0px 0px 12px rgba(0, 255, 255, 0.5);
+        border: 1px solid rgba(127, 255, 255, 0.25);
+        text-align: center;
+        cursor: default;
+      }
+
+      .about_element{
+        width: 1070px;
+        height: 270px;
+        padding: 10px;
+        box-shadow: 0px 0px 12px rgba(255, 81, 0, 0.5);
+        border: 1px solid rgba(127, 255, 255, 0.25);
+        text-align: center;
+        cursor: default;
+      }
+      .hello{
+        font-weight: 800;
+        text-shadow: 0 0 10px rgba(231, 16, 16, 0.95);
+        font-size: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .name{
+        font-weight: 800;
+        text-shadow: 0 0 10px rgba(41, 231, 16, 0.95);
+        font-size: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      .family{
+        font-weight: 800;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.95);
+        font-size: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      #info{
+        position: absolute;
+        background-color: rgba(0, 255, 255, 0.7);
+        width: calc(100vw - 9px);
+        height: calc(100vh - 14px);
+        top: 2px;
+        left: 2px;
+        text-align: center;
+        border-radius: 10px;
+        padding: 5px 0px 5px 5px;
+        
+      }
+      #model_three_d{
+        width: 100%;
+        height: calc(100% - 148px);
+      }
+      .info_off{
+        display: none;
+      }
+      .info_on{
+        display: block;
+      }
+
+      .bar{
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-items: center;
+        line-height: 30px;
+        width: 100%;
+        border-radius: 10px 10px 0px 0px;
+        height: 30px;
+        position: absolute;
+        color: #ffffff;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        
+      }
+      
+      #exit{
+        width: 20px; 
+        position: absolute;
+        top: 5px; 
+        left: 5px;
+        cursor: pointer;
+        display: block;
+        
+      }
+      #banner{
+        
+        margin: 0px 10px 10px 0px;
+        display:inline-flex;
+        position: absolute;
+        width: 100%;
+        height: 152px;
+        top: calc(100% - 152px);
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 0px 0px 10px 10px;
+        
+        
+        
+      }
+     #paragraph{
+        width:calc(100% - 120px);
+        text-align: right;
+        color:#ffffff;
+        padding: 0px 5px 5px 0px;
+        
+        margin: 5px 5px 5px 0px;
+        border-radius: 10px;
+        
+      }
+      p{
+        overflow: auto;
+        height: calc(100% - 5px);
+        font-size: 1.2em;
+        font-weight: 400;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+      span{
+        font-size: 1.2em;
+      }
+
+    </style>
+    <script>     
+      function hideinfo(){
+        let element = document.getElementById('info');
+        element.className = 'info_off';
+      }
+    </script>
+</head>
+<body>
+<script type="text/javascript" src="./js/jquery-1.12.3.js"></script>
+<script type="text/javascript" src="./lib/three.js"></script>
+<script type="text/javascript" src="./lib/Tween.min.js"></script>
+<script type="text/javascript" src="./lib/controls/TrackballControls.js"></script>
+<script type="text/javascript" src="./lib/renderers/CSS3DRenderer.js"></script>
+
+<div style="width: 100vw; height: 100vh; display:flex; " id="container"></div>
+
+<div class="info_off"  id="info">
+    
+    <model-viewer 
+      id="model_three_d" 
+      alt="Chemical element in 3D" 
+      src="./3d materials/element_001_hydrogen.glb" 
+      autoplay="true"
+      rotation-per-second="0"
+      camera-controls="true" 
+      >
+  </model-viewer>
+ 
+  <div  id="banner">
+    <div style="background-color: rgba(255, 255, 255, 0.8) ; width:120px; height:140px; border-radius: 10px; margin:5px;" class="note_element">
+        <div class="cont">
+          <div class="left">
+            <div class="number_A" id="info_number_A">العدد الكتلي</div>
+            <div class="space"></div>
+            <div class="number_Z" id="info_number_Z">العدد الذري</div>
+          </div>
+          <div class="symbol" id="info_symbol">X</div>
+        </div>
+        <div class="details" id="info_details">اسم العنصر<br>التوزيع</div>
+    </div>
+    <div id="paragraph">
+      <p dir="rtl" id="element_info"></p>
+    </div>
+  </div>
+  <div class="bar">
+    <img id="exit" onclick="hideinfo()" src="./img/exit.png" alt="exit">
+
+    <div style="margin-left: auto; margin-right:5px;">
+      <span>الالكترون </span>
+      <img style="width: 20px;" src="./img/proton.png" alt="proton">
+      <span>البروتون </span>
+      <img style="width: 20px;" src="./img/netron.png" alt="proton">
+      <span>النيترون</span>
+      <img style="width: 15px;" src="./img/electron.png" alt="proton">
+    </div>
+  </div>
+  
+</div>
+
+
+<script src="./js/main.js"></script>
+<script type="module" src="./js/model-viewer.min.js"></script>
+</body>
+</html>
