@@ -408,8 +408,8 @@ function noteLayout(table, index) {
 
     let object = new THREE.Object3D();
 
-    object.position.x = -260;
-    object.position.y = 900;
+    object.position.x = -1190;
+    object.position.y = 1200;
     object.position.z = 0;
     targets.table.push(object);
 
