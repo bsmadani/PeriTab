@@ -228,11 +228,47 @@
         font-size: 1.2em;
       }
 
+      .corpusc_on, .model_on{
+        display: block;
+      }
+
+      .corpusc_off, .model_off{
+        display: none;
+      }
+
     </style>
     <script>     
       function hideinfo(){
-        let element = document.getElementById('info');
-        element.className = 'info_off';
+        
+        let corpus = document.getElementById("corpuscule");
+        corpus.className = 'corpusc_off'; 
+
+        let model = document.getElementById("model_three_d");
+        model.className = 'model_off'; 
+
+        let element = document.getElementById("info");
+        element.style.backgroundColor = 'rgba(221, 47, 24, 0.842)';
+
+        element.className = 'info_on';
+
+        let element_info = document.getElementById('element_info');
+        element_info.textContent = 'تأكد من اتصالك بالانترنت';
+
+        let number_A = document.getElementById('info_number_A');
+        number_A.textContent = 'العدد الكتلي';
+
+        let number_Z = document.getElementById('info_number_Z');
+        number_Z.textContent = 'العدد الذري';
+
+        let symbol = document.getElementById('info_symbol');
+        symbol.textContent = 'X';
+
+
+        let details = document.getElementById('info_details');
+        details.innerHTML = 'العنصر الكيميائي' + '<br>' + 'التوزيع الالكتروني';
+      
+        let info = document.getElementById('info');
+        info.className = 'info_off';
       }
     </script>
 </head>
@@ -247,14 +283,14 @@
 
 <div class="info_off"  id="info">
     
-    <model-viewer 
+  <model-viewer 
       id="model_three_d" 
+      class="model_on"
       alt="Chemical element in 3D" 
-      src="./3d materials/element_001_hydrogen.glb" 
+      src="" 
       autoplay="true"
       rotation-per-second="0"
-      camera-controls="true" 
-      >
+      camera-controls="true">
   </model-viewer>
  
   <div  id="banner">
@@ -276,7 +312,7 @@
   <div class="bar">
     <img id="exit" onclick="hideinfo()" src="./img/exit.png" alt="exit">
 
-    <div style="margin-left: auto; margin-right:5px;">
+    <div class="corpusc_on" id="corpuscule" style="margin-left: auto; margin-right:5px;">
       <span>الالكترون </span>
       <img style="width: 20px;" src="./img/proton.png" alt="proton">
       <span>البروتون </span>
