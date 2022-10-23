@@ -311,15 +311,21 @@ function htmlElement(table, i) {
     details.innerHTML = table[i + 1] + '<br>' + dist[i/5];
     element.appendChild(details);
 
-
-
     element.addEventListener('pointerdown', ()=>showelementdetails(i), false);
 
     return element;
 }
 
 function showelementdetails(i){
+
+    let corpus = document.getElementById("corpuscule");
+    corpus.className = 'corpusc_on'; 
+
+    let model = document.getElementById("model_three_d");
+    model.className = 'model_on'; 
+
     let element = document.getElementById("info");
+
     if(i == 0 || i == 10 || i == 50){
         element.style.backgroundColor = 'rgba(199, 10, 180, 0.75)';
     }else if(i == 40 || i == 80){
@@ -334,7 +340,6 @@ function showelementdetails(i){
         element.style.backgroundColor = 'rgba(240, 205, 8, 0.842)';
     }
     let object = document.getElementById('model_three_d');
-    object.src = models[i / 5];
     object.src = models[i / 5];
     element.className = 'info_on';
 
@@ -353,7 +358,6 @@ function showelementdetails(i){
 
     let details = document.getElementById('info_details');
     details.innerHTML = table[i + 1] + '<br>' + dist[i/5];
-
 
 }
 
@@ -408,7 +412,7 @@ function noteLayout(table, index) {
 
     let object = new THREE.Object3D();
 
-    object.position.x = 260;
+    object.position.x = -260;
     object.position.y = 900;
     object.position.z = 0;
     targets.table.push(object);
